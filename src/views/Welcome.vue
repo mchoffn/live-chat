@@ -5,7 +5,12 @@
 </template>
 
 <script>
-export default {};
+
+import Signupform from '../components/SignupForm.vue'
+
+export default {
+    components: { Signupform }
+};
 </script>
 
 <style>
