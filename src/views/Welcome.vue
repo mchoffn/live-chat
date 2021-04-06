@@ -1,15 +1,33 @@
 <template>
   <div class="welcome container">
     <p>Welcome</p>
+    <div v-if="showLogin">
+      <h2>Login</h2>
+      <Login/>
+      <p>No account yet? <span @click="showLogin = false">Signup</span> instead</p>
+    </div>
+    <div v-else>
+      <h2>Signup</h2>
+      <Signup/>
+      <p>Already registered? <span @click="showLogin = true">Login</span> instead</p>
+    </div>
   </div>
 </template>
 
 <script>
 
-import Signupform from '../components/SignupForm.vue'
+import Signup from '../components/Signup.vue'
+import Login from '../components/Login.vue'
+import { ref } from 'vue'
 
 export default {
-    components: { Signupform }
+    components: { Signup, Login },
+    setup() {
+      const showLogin = ref(true)
+
+      return { showLogin }
+    }
+    
 };
 </script>
 
@@ -17,5 +35,34 @@ export default {
 .welcome {
   text-align: center;
   padding: 20px 0;
+}
+
+.welcome form{
+  width:300px;
+  margin:20px auto;
+}
+
+.welcome label{
+  display: block;
+  margin:20px 0 10px;
+}
+
+.welcome input{
+  width:100%;
+  padding:10px;
+  border-radius: 20px;
+  border:1px solid #eee;
+  outline:none;
+  color:#999;
+  margin:10px auto;
+}
+
+.welcome span{
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.welcome button{
+  margin:20px auto;
 }
 </style>
